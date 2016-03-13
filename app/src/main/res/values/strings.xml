@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Cube26</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <!-- Query Paramters -->
+    <string name="string_paramter_type">json</string>
+    <string name="sting_paramter_payment_list">list_gateway</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="text_retry">Retry</string>
+    <string name="text_no_internet">It seems that your internet is not working.</string>
+    <string name="text_default_error">Some error occurred. Please try again!</string>
 </resources>
