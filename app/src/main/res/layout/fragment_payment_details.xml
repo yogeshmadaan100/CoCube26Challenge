@@ -1,0 +1,235 @@
+<android.support.v4.widget.NestedScrollView
+    android:id="@+id/scroll_view"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/scroll_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:paddingBottom="@dimen/fab_margin">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/fake_view"
+            android:visibility="visible"/>
+
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_below="@+id/fake_view"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fake_view"
+            android:layout_marginEnd="@dimen/margins_20"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginRight="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_marginTop="@dimen/margins_20"
+            android:layout_toEndOf="@id/poster"
+            android:layout_toRightOf="@id/poster"
+            android:layout_toLeftOf="@+id/fab_fav"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            tools:text="The Hunger Games: Mockingjay - Part 2"
+            />
+
+
+
+        <LinearLayout
+            android:id="@+id/rating_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_toEndOf="@id/poster"
+            android:layout_toRightOf="@id/poster"
+            android:clipChildren="false"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/margins_10">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margins_10"
+                android:text="@string/string_ratings"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorPrimary"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/setup_fee_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rating_container"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_toEndOf="@id/poster"
+            android:layout_toRightOf="@id/poster"
+            android:clipChildren="false"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margins_10"
+                android:text="@string/string_setup_fee"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+
+            <TextView
+                android:id="@+id/setup_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorPrimary"
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/transaction_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/setup_fee_container"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_toEndOf="@id/poster"
+            android:layout_toRightOf="@id/poster"
+            android:clipChildren="false"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margins_10"
+                android:text="@string/string_transaction_fee"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+            <TextView
+                android:id="@+id/transaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorPrimary"
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/currency_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transaction_container"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_toEndOf="@id/poster"
+            android:layout_toRightOf="@id/poster"
+            android:clipChildren="false"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margins_10"
+                android:text="@string/string_supported_currency"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+
+            <TextView
+                android:id="@+id/currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="?android:attr/textColorPrimary"
+                />
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/desciption_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currency_container"
+            android:layout_marginEnd="@dimen/margins_20"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginRight="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_marginTop="@dimen/margins_20"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/string_description"
+            />
+        <TextView
+            android:id="@+id/desciption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/desciption_header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/margins_20"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginRight="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_marginTop="@dimen/margins_20"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            />
+        <TextView
+            android:id="@+id/document_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/desciption"
+            android:layout_marginEnd="@dimen/margins_20"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginRight="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_marginTop="@dimen/margins_20"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="@string/string_document"
+            />
+        <TextView
+            android:id="@+id/document"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/document_header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/margins_20"
+            android:layout_marginLeft="@dimen/margins_20"
+            android:layout_marginRight="@dimen/margins_20"
+            android:layout_marginStart="@dimen/margins_20"
+            android:layout_marginTop="@dimen/margins_20"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@android:color/holo_blue_light"
+            />
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -13,9 +13,16 @@
     <string name="text_retry">Retry</string>
     <string name="text_no_internet">It seems that your internet is not working.</string>
     <string name="text_default_error">Some error occurred. Please try again!</string>
-    
+
     <!-- Menu String -->
     <string name="action_sort_rating">Sort by Ratings</string>
     <string name="action_sort_setup_fee">Sort by Setup Fee</string>
+    <string name="title_activity_payment_details">PaymentDetailsActivity</string>
 
+    <string name="string_ratings">Ratings</string>
+    <string name="string_setup_fee">Setup Fee</string>
+    <string name="string_supported_currency">Supported Currency</string>
+    <string name="string_transaction_fee">Transaction Fee</string>
+    <string name="string_description">Description</string>
+    <string name="string_document">Document</string>
 </resources>

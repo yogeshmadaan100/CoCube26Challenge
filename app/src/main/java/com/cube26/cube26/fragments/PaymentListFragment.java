@@ -1,6 +1,7 @@
 package com.cube26.cube26.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.cube26.cube26.R;
+import com.cube26.cube26.activities.PaymentDetailsActivity;
 import com.cube26.cube26.adapters.PaymentAdapter;
 import com.cube26.cube26.models.PaymentGateway;
 import com.cube26.cube26.models.PaymentResponse;
@@ -168,7 +170,9 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
     }
     @Override
     public void onPaymentClick(View itemView, PaymentGateway paymentGateway, boolean isDefaultSelection) {
-
+        Intent intent = new Intent(getActivity(), PaymentDetailsActivity.class);
+        intent.putExtra("payment",paymentGateway);
+        getActivity().startActivity(intent);
     }
     public void startRefreshing() {
         swipeRefreshLayout.setRefreshing(true);
