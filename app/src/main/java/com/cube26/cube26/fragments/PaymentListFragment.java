@@ -123,6 +123,7 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
                         .subscribe(new Observer<PaymentResponse>() {
                             @Override
                             public void onCompleted() {
+
                             }
 
                             @Override
@@ -182,7 +183,8 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
 
                 this.paymentResponse = paymentResponse;
                 paymentGateways.clear();
-
+            if(paymentAdapter!=null)
+                paymentAdapter.setFilteredData(paymentResponse.getPaymentGateways());
             paymentGateways.addAll(paymentResponse.getPaymentGateways());
             Collections.sort(paymentGateways,Utils.paymentNameComparator);
             paymentAdapter.notifyDataSetChanged();
@@ -254,5 +256,11 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
             Collections.sort(paymentGateways,Utils.paymentSetupFeeComparator);
         }
         paymentAdapter.notifyDataSetChanged();
+    }
+
+    public void performSearch(String query)
+    {
+        if(paymentAdapter!=null)
+            paymentAdapter.filter(query);
     }
 }

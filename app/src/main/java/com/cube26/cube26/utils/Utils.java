@@ -62,4 +62,10 @@ public class Utils {
             return lhs.getName().compareTo(rhs.getName());
         }
     };
+
+    public static Integer getDpInPxUnits(Context ctxt, Integer dps) {
+        float scale = ctxt.getResources().getDisplayMetrics().density;
+        Integer px = (int) (dps * scale + 0.5f);
+        return px;
+    }
 }
