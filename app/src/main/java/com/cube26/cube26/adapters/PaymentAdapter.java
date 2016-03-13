@@ -1,9 +1,6 @@
 package com.cube26.cube26.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.cube26.cube26.R;
 import com.cube26.cube26.models.PaymentGateway;
 
@@ -45,16 +41,7 @@ public class PaymentAdapter extends RecyclerView.Adapter<PaymentAdapter.PaymentV
 
     @Override
     public void onBindViewHolder(final PaymentViewHolder holder, final int position) {
-        Glide.with(context).load(paymentGateways.get(position).getImage()).asBitmap().centerCrop().error(R.mipmap.ic_launcher).placeholder(R.mipmap.ic_launcher).into(new BitmapImageViewTarget(holder.imageView) {
-            @Override
-            protected void setResource(Bitmap resource) {
-                resource = Bitmap.createScaledBitmap(resource,(int)context.getResources().getDimension(R.dimen.payment_list_image),(int)context.getResources().getDimension(R.dimen.payment_list_image),false);
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
-                holder.imageView.setImageDrawable(circularBitmapDrawable);
-            }
-        });
+        Glide.with(context).load(paymentGateways.get(position).getImage()).error(R.mipmap.ic_launcher).into(holder.imageView);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
