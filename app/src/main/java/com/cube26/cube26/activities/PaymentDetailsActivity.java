@@ -6,11 +6,13 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.cube26.cube26.R;
 import com.cube26.cube26.fragments.PaymentDetailsFragment;
 import com.cube26.cube26.models.PaymentGateway;
+import com.cube26.cube26.utils.Utils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,8 +30,8 @@ public class PaymentDetailsActivity extends AppCompatActivity {
     @OnClick(R.id.fab_fav)
     public void onFavouriteCLicked()
     {
-//        Utils.toggleFavourite(getApplicationContext(),movie);
-//        fabFavourite.setImageResource(Utils.isFavourite(getApplicationContext(),movie)?R.drawable.ic_favorite_white_24dp:R.drawable.ic_favorite_border_white_24dp);
+        Utils.toggleFavourite(getApplicationContext(),paymentGateway);
+        fabFavourite.setImageResource(Utils.isFavourite(getApplicationContext(),paymentGateway)?R.drawable.ic_favorite_white_24dp:R.drawable.ic_favorite_border_white_24dp);
     }
     private static final String ARG_PAYMENT = "payment";
     private PaymentGateway paymentGateway;
@@ -44,7 +46,7 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         collapsingToolbarLayout.setTitle(paymentGateway.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame, PaymentDetailsFragment.newInstance(paymentGateway,false)).commit();
-//        fabFavourite.setImageResource(Utils.isFavourite(getApplicationContext(),movie)?R.drawable.ic_favorite_white_24dp:R.drawable.ic_favorite_border_white_24dp);
+        fabFavourite.setImageResource(Utils.isFavourite(getApplicationContext(),paymentGateway)?R.drawable.ic_favorite_white_24dp:R.drawable.ic_favorite_border_white_24dp);
 
     }
 
@@ -55,4 +57,10 @@ public class PaymentDetailsActivity extends AppCompatActivity {
         outState.putParcelable(ARG_PAYMENT,paymentGateway);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+            onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 }

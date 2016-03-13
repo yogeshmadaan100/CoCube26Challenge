@@ -54,6 +54,12 @@
             android:name=".activities.PaymentDetailsActivity"
             android:label="@string/title_activity_payment_details"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <provider
+            android:authorities="com.cube26.cube26.provider"
+            android:name=".provider.PaymentProvider"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

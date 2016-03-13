@@ -241,6 +241,10 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
             case R.id.action_sort_setup_fee:
                 sortList(SortCriteria.SETUPFEE);
                 break;
+            case R.id.action_sort_favourites:
+                currentSortCriteria = SortCriteria.FAVOURITES;
+                refreshData(Utils.getFavouritePayments(getActivity()));
+                break;
             default:
                 break;
         }

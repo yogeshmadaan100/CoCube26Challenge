@@ -42,6 +42,10 @@ public class PaymentGateway implements Parcelable{
     @Expose
     private String howToDocument;
 
+    public PaymentGateway()
+    {
+
+    }
     protected PaymentGateway(Parcel in) {
         id = in.readString();
         name = in.readString();

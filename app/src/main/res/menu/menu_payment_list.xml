@@ -10,6 +10,10 @@
         android:title="@string/action_sort_setup_fee"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item android:id="@+id/action_sort_favourites"
+        android:title="@string/action_sort_favourites"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
     <item android:id="@+id/action_search"
         android:title="Search"
         android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
