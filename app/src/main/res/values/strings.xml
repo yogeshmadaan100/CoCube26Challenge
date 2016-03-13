@@ -13,4 +13,9 @@
     <string name="text_retry">Retry</string>
     <string name="text_no_internet">It seems that your internet is not working.</string>
     <string name="text_default_error">Some error occurred. Please try again!</string>
+    
+    <!-- Menu String -->
+    <string name="action_sort_rating">Sort by Ratings</string>
+    <string name="action_sort_setup_fee">Sort by Setup Fee</string>
+
 </resources>

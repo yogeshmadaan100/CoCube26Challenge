@@ -2,12 +2,14 @@ package com.cube26.cube26.fragments;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -16,12 +18,14 @@ import com.cube26.cube26.R;
 import com.cube26.cube26.adapters.PaymentAdapter;
 import com.cube26.cube26.models.PaymentGateway;
 import com.cube26.cube26.models.PaymentResponse;
+import com.cube26.cube26.models.SortCriteria;
 import com.cube26.cube26.services.PaymentService;
 import com.cube26.cube26.utils.RxUtils;
 import com.cube26.cube26.utils.Utils;
 import com.cube26.cube26.utils.ui.SimpleDividerItemDecoration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
@@ -40,6 +44,10 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
     @Bind(R.id.progressBar)
     ProgressBar progressBar;
     private static final String TAG = PaymentListFragment.class.getCanonicalName();
+    public static final SortCriteria defaultSortCriteria = SortCriteria.NAME;
+    public static  SortCriteria currentSortCriteria = defaultSortCriteria;
+    private static final String KEY_PAYMENT = "movies";
+    private static final String KEY_SORT_ORDER = SortCriteria.class.getSimpleName();
     private CompositeSubscription _subscriptions = new CompositeSubscription();
     private PaymentAdapter paymentAdapter;
     private List<PaymentGateway> paymentGateways;
@@ -68,6 +76,15 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_payment_list, container, false);
         ButterKnife.bind(this,rootView);
         initViews();
+        if (savedInstanceState != null) {
+            if(savedInstanceState.getParcelable(KEY_PAYMENT)!=null)
+            {
+                paymentResponse = savedInstanceState.getParcelable(KEY_PAYMENT);
+                refreshData(paymentResponse);
+            }
+            if(savedInstanceState.getSerializable(KEY_SORT_ORDER)!=null)
+                currentSortCriteria = (SortCriteria)savedInstanceState.getSerializable(KEY_SORT_ORDER);
+        }
         if(paymentResponse==null)
             refreshContent();
         return rootView;
@@ -78,7 +95,12 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshContent();
+                if(currentSortCriteria==SortCriteria.FAVOURITES)
+                {
+//                    refreshData(Utils.getFavouriteMovies(getActivity()));
+                }
+                else
+                    refreshContent();
             }
         });
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary);
@@ -117,6 +139,15 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
                             }
                         }));
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(KEY_PAYMENT,paymentResponse);
+        outState.putSerializable(KEY_SORT_ORDER,currentSortCriteria);
+    }
+
+
     @Override
     public void onStop() {
         super.onStop();
@@ -153,6 +184,7 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
                 paymentGateways.clear();
 
             paymentGateways.addAll(paymentResponse.getPaymentGateways());
+            Collections.sort(paymentGateways,Utils.paymentNameComparator);
             paymentAdapter.notifyDataSetChanged();
             stopRefreshing();
 //            if(clearData && mResponse.getMovies().size()>0)
@@ -181,5 +213,46 @@ public class PaymentListFragment extends Fragment implements PaymentAdapter.Paym
                         refreshContent();
                     }
                 }).show();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId())
+        {
+            case R.id.action_sort_rating:
+                sortList(SortCriteria.RATINGS);
+                break;
+            case R.id.action_sort_setup_fee:
+                sortList(SortCriteria.SETUPFEE);
+                break;
+            default:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void sortList(SortCriteria sortCriteria)
+    {
+        currentSortCriteria = sortCriteria;
+        if(currentSortCriteria == SortCriteria.RATINGS)
+        {
+            Collections.sort(paymentGateways,Utils.paymentRatingComparator);
+        }
+        else if(currentSortCriteria == SortCriteria.SETUPFEE)
+        {
+            Collections.sort(paymentGateways,Utils.paymentSetupFeeComparator);
+        }
+        paymentAdapter.notifyDataSetChanged();
     }
 }

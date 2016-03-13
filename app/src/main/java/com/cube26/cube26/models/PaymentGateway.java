@@ -1,12 +1,15 @@
 package com.cube26.cube26.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by yogeshmadaan on 13/03/16.
  */
-public class PaymentGateway {
+public class PaymentGateway implements Parcelable{
 
     @SerializedName("id")
     @Expose
@@ -38,6 +41,31 @@ public class PaymentGateway {
     @SerializedName("how_to_document")
     @Expose
     private String howToDocument;
+
+    protected PaymentGateway(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        image = in.readString();
+        description = in.readString();
+        branding = in.readString();
+        rating = in.readString();
+        currencies = in.readString();
+        setupFee = in.readString();
+        transactionFees = in.readString();
+        howToDocument = in.readString();
+    }
+
+    public static final Creator<PaymentGateway> CREATOR = new Creator<PaymentGateway>() {
+        @Override
+        public PaymentGateway createFromParcel(Parcel in) {
+            return new PaymentGateway(in);
+        }
+
+        @Override
+        public PaymentGateway[] newArray(int size) {
+            return new PaymentGateway[size];
+        }
+    };
 
     /**
      *
@@ -219,4 +247,22 @@ public class PaymentGateway {
         this.howToDocument = howToDocument;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(image);
+        dest.writeString(description);
+        dest.writeString(branding);
+        dest.writeString(rating);
+        dest.writeString(currencies);
+        dest.writeString(setupFee);
+        dest.writeString(transactionFees);
+        dest.writeString(howToDocument);
+    }
 }

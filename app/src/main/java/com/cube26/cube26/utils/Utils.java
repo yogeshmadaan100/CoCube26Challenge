@@ -5,6 +5,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.cube26.cube26.models.PaymentGateway;
+
+import java.util.Comparator;
+
 /**
  * Created by yogeshmadaan on 13/03/16.
  */
@@ -34,4 +38,28 @@ public class Utils {
             return false;
         }
     }
+
+    public static Comparator<PaymentGateway> paymentRatingComparator = new Comparator<PaymentGateway>() {
+        @Override
+        public int compare(PaymentGateway lhs, PaymentGateway rhs) {
+            Float rating1 = Float.parseFloat(lhs.getRating());
+            Float rating2 = Float.parseFloat(rhs.getRating());
+            return rating1.compareTo(rating2);
+        }
+    };
+
+    public static Comparator<PaymentGateway> paymentSetupFeeComparator = new Comparator<PaymentGateway>() {
+        @Override
+        public int compare(PaymentGateway lhs, PaymentGateway rhs) {
+            Float setupFee1 = Float.parseFloat(lhs.getSetupFee());
+            Float setupFee2 = Float.parseFloat(rhs.getSetupFee());
+            return setupFee1.compareTo(setupFee2);
+        }
+    };
+    public static Comparator<PaymentGateway> paymentNameComparator = new Comparator<PaymentGateway>() {
+        @Override
+        public int compare(PaymentGateway lhs, PaymentGateway rhs) {
+            return lhs.getName().compareTo(rhs.getName());
+        }
+    };
 }
