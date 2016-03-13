@@ -221,6 +221,18 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:text="@string/string_document"
             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/desciption"
+            android:layout_toEndOf="@+id/document_header"
+            android:layout_toRightOf="@+id/document_header"
+            android:src="@drawable/ic_file_download_black_24dp"
+            android:layout_marginEnd="@dimen/margins_20"
+            android:layout_marginRight="@dimen/margins_20"
+            android:layout_marginTop="@dimen/margins_20"
+            android:id="@+id/icon_download"
+            />
         <TextView
             android:id="@+id/document"
             android:layout_width="wrap_content"

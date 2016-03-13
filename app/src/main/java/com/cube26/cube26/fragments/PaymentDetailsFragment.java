@@ -2,9 +2,12 @@ package com.cube26.cube26.fragments;
 
 
 import android.animation.Animator;
+import android.app.DownloadManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
@@ -33,6 +36,7 @@ import butterknife.Bind;
 import butterknife.BindBool;
 import butterknife.BindInt;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import rx.subscriptions.CompositeSubscription;
 
 public class PaymentDetailsFragment extends Fragment {
@@ -61,7 +65,27 @@ public class PaymentDetailsFragment extends Fragment {
     @BindInt(R.integer.anim_stagger_delay)          int animStaggerDelay;
     @BindInt(R.integer.anim_activity_start_delay)   int animActivityStartDelay;
     @BindBool(R.bool.anim_backdrop_animate_alpha)   boolean anibackdropAnimateAlpha;
+    @OnClick(R.id.icon_download)
+            public void onDownloadClicked()
+    {
+        DownloadManager downloadManager = (DownloadManager)getActivity().getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri Download_Uri = Uri.parse("http://demo.mysamplecode.com/Sencha_Touch/CountryServlet?start=0&limit=999");
+        DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
 
+        //Restrict the types of networks over which this download may proceed.
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+        //Set whether this download may proceed over a roaming connection.
+        request.setAllowedOverRoaming(false);
+        //Set the title of this download, to be displayed in notifications (if enabled).
+        request.setTitle("Downloading");
+        //Set a description of this download, to be displayed in notifications (if enabled)
+        request.setDescription("Document for "+paymentGateway.getName());
+        //Set the local destination for the downloaded file to a path within the application's external files directory
+        request.setDestinationInExternalFilesDir(getActivity(), Environment.DIRECTORY_DOWNLOADS,paymentGateway.getName()+".pdf");
+
+        //Enqueue a new download and same the referenceId
+         downloadManager.enqueue(request);
+    }
     ViewGroup rootView;
     private PaymentGateway paymentGateway;
     private List<View> enterAnimationViews;
