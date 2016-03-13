@@ -78,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginLeft="@dimen/margins_10"
                 />
 
 
@@ -110,6 +111,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginLeft="@dimen/margins_10"
                 />
 
 
@@ -141,6 +143,8 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?android:attr/textColorPrimary"
+
+                android:layout_marginLeft="@dimen/margins_10"
                 />
 
 
@@ -173,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginLeft="@dimen/margins_10"
                 />
 
 
